@@ -137,7 +137,7 @@ pub fn apply_collider_user_changes(
     mut context: ResMut<RapierContext>,
     changed_collider_transforms: Query<
         (&RapierColliderHandle, &GlobalTransform),
-        (Without<RapierRigidBodyHandle>, Changed<GlobalTransform>),
+        (Or<(Without<RapierRigidBodyHandle>, With<RigidBodyDisabled>)>, Changed<GlobalTransform>),
     >,
 
     changed_shapes: Query<(&RapierColliderHandle, &Collider), Changed<Collider>>,
